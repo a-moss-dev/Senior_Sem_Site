@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Senior Project – [First Name] [Last Initial].</title>
+
+  <!-- ============================================================
+       GOOGLE FONTS — swap these src URLs to change fonts
+       Current: Orbitron (headings) + Inter (body)
+  ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       COLOR PALETTE — change these variables to restyle everything
+    ============================================================ */
+    :root {
+      --color-bg:           #0a0a14;   /* page background */
+      --color-surface:      #12121f;   /* card / section background */
+      --color-surface-2:    #1a1a2e;   /* elevated surface */
+      --color-accent-1:     #7b2fff;   /* primary accent (purple) */
+      --color-accent-2:     #00d4ff;   /* secondary accent (cyan) */
+      --color-accent-3:     #ff3cac;   /* tertiary accent (pink) */
+      --color-text-primary: #f0eeff;   /* main text */
+      --color-text-muted:   #8888aa;   /* secondary / label text */
+      --color-border:       #2a2a45;   /* subtle borders */
+
+      /* Typography */
+      --font-display: 'Orbitron', sans-serif;
+      --font-body:    'Inter', sans-serif;
+
+      /* Spacing */
+      --section-gap: 5rem;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ============================================================
+       UTILITY CLASSES
+    ============================================================ */
+    .accent-1 { color: var(--color-accent-1); }
+    .accent-2 { color: var(--color-accent-2); }
+    .accent-3 { color: var(--color-accent-3); }
+
+    .section-label {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-accent-2);
+      margin-bottom: 0.5rem;
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+
+    .card-elevated {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+
+    /* Glowing left-border accent on cards */
+    .card-accented {
+      border-left: 3px solid var(--color-accent-1);
+    }
+
+    /* ============================================================
+       LAYOUT CONTAINER
+    ============================================================ */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ============================================================
+       HERO / HEADER
+    ============================================================ */
+    header {
+      position: relative;
+      padding: 5rem 0 4rem;
+      text-align: center;
+      border-bottom: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+
+    /* Decorative animated ring behind the header */
+    header::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 1px solid var(--color-accent-1);
+      opacity: 0.12;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse-ring 6s ease-in-out infinite;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      border: 1px solid var(--color-accent-2);
+      opacity: 0.07;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse-ring 6s ease-in-out infinite 1.5s;
+    }
+
+    @keyframes pulse-ring {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.10; }
+      50%       { transform: translate(-50%, -50%) scale(1.05); opacity: 0.18; }
+    }
+
+    .header-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--color-accent-2);
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .student-name {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      position: relative;
+
+      /* -------------------------------------------------------
+         STUDENT: Replace the text below with your first name
+         and last initial followed by a period.
+         Example: ALEX M.
+      ------------------------------------------------------- */
+    }
+
+    .header-sub {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    /* ============================================================
+       NAV BAR
+    ============================================================ */
+    nav {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    nav a {
+      display: block;
+      padding: 1rem 1.25rem;
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--color-accent-2); }
+
+    /* ============================================================
+       MAIN CONTENT
+    ============================================================ */
+    main {
+      padding: 4rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--section-gap);
+    }
+
+    /* ============================================================
+       SECTION HEADINGS
+    ============================================================ */
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Decorative line next to section title */
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--color-border), transparent);
+    }
+
+    /* ============================================================
+       SECTION: ESSENTIAL QUESTION
+    ============================================================ */
+    #essential-question .question-display {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--color-accent-2);
+      border-left: 3px solid var(--color-accent-1);
+      padding-left: 1.5rem;
+
+      /* -------------------------------------------------------
+         STUDENT: Replace this placeholder text with your
+         actual essential question.
+      ------------------------------------------------------- */
+    }
+
+    /* ============================================================
+       SECTION: ARTIST STATEMENT
+    ============================================================ */
+    #artist-statement p {
+      color: var(--color-text-primary);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+
+      /* -------------------------------------------------------
+         STUDENT: Replace the placeholder <p> tags below
+         with your actual artist statement paragraphs.
+         You can add or remove <p> tags as needed.
+      ------------------------------------------------------- */
+    }
+
+    #artist-statement p:last-child { margin-bottom: 0; }
+
+    /* ============================================================
+       SECTION: AUDIO TRACKS
+    ============================================================ */
+    .audio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .audio-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: border-color 0.2s;
+    }
+
+    .audio-card:hover { border-color: var(--color-accent-1); }
+
+    .audio-card-title {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--color-text-primary);
+    }
+
+    .audio-card-meta {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Play button */
+    .btn-play {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: transparent;
+      border: 1px solid var(--color-accent-1);
+      color: var(--color-accent-1);
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.55rem 1rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      align-self: flex-start;
+    }
+
+    .btn-play:hover,
+    .btn-play.playing {
+      background: var(--color-accent-1);
+      color: #fff;
+    }
+
+    /* SVG play / pause icons */
+    .btn-play svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* Progress bar */
+    .audio-progress-wrap {
+      height: 3px;
+      background: var(--color-border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .audio-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
+      border-radius: 2px;
+      transition: width 0.3s linear;
+    }
+
+    /* ============================================================
+       SECTION: VIDEO
+    ============================================================ */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* Placeholder shown when no video URL is set */
+    .video-placeholder {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--color-text-muted);
+    }
+
+    .video-placeholder-icon {
+      width: 56px;
+      height: 56px;
+      border: 2px solid var(--color-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-placeholder svg { width: 22px; height: 22px; fill: var(--color-text-muted); }
+
+    .video-placeholder p {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+      max-width: 240px;
+      line-height: 1.6;
+    }
+
+    .video-caption {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+
+    /* ============================================================
+       SECTION: PHOTOS / GALLERY
+    ============================================================ */
+    .photo-grid {
+      display: grid;
+      /* Adjust the columns template below to change your layout.
+         Current: 3 equal columns. Try "1fr 1fr" for 2 columns,
+         or "1fr 1fr 1fr 1fr" for 4 columns. */
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    /* Make first photo span two columns for a featured look */
+    .photo-item:first-child {
+      grid-column: span 2;
+    }
+
+    .photo-item {
+      border-radius: 0.75rem;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      aspect-ratio: 4 / 3;
+      position: relative;
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .photo-item:hover img { transform: scale(1.04); }
+
+    /* Placeholder for photos not yet added */
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--color-text-muted);
+    }
+
+    .photo-placeholder svg { width: 28px; height: 28px; }
+
+    .photo-placeholder span {
+      font-family: var(--font-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .photo-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0.5rem 0.75rem;
+      background: rgba(10, 10, 20, 0.75);
+      font-size: 0.78rem;
+      color: var(--color-text-primary);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .photo-item:hover .photo-caption { transform: translateY(0); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 640px) {
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .photo-item:first-child { grid-column: span 2; }
+    }
+
+    @media (max-width: 420px) {
+      .photo-grid { grid-template-columns: 1fr; }
+      .photo-item:first-child { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header>
+    <div class="container">
+      <p class="header-eyebrow">Senior Project Portfolio</p>
+
+      <!-- STUDENT: Replace "[First Name] [L]." with your name -->
+      <h1 class="student-name">[First Name] [L].</h1>
+
+      <!-- STUDENT: Optional subtitle — your project title, year, etc. -->
+      <p class="header-sub">[Project Title] &nbsp;·&nbsp; [Year]</p>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav aria-label="Page sections">
+    <ul>
+      <li><a href="#essential-question">Essential Question</a></li>
+      <li><a href="#artist-statement">Artist Statement</a></li>
+      <li><a href="#audio">Audio</a></li>
+      <li><a href="#video">Video</a></li>
+      <li><a href="#photos">Photos</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       MAIN CONTENT
+  ============================================================ -->
+  <main>
+    <div class="container">
+
+      <!-- ========================================================
+           SECTION 1: ESSENTIAL QUESTION
+      ======================================================== -->
+      <section id="essential-question" aria-labelledby="eq-heading">
+        <p class="section-label">Essential Question</p>
+        <h2 class="section-title" id="eq-heading">The Question</h2>
+
+        <div class="card card-accented">
+          <!-- STUDENT: Replace the text inside the blockquote
+               with your actual essential question. -->
+          <blockquote class="question-display">
+            How can [your topic / medium / approach] be used to [impact / explore / express] [your central idea or theme]?
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 2: ARTIST STATEMENT
+      ======================================================== -->
+      <section id="artist-statement" aria-labelledby="as-heading">
+        <p class="section-label">In My Own Words</p>
+        <h2 class="section-title" id="as-heading">Artist Statement</h2>
+
+        <div class="card">
+          <!-- STUDENT: Replace the paragraphs below with your
+               actual artist statement. Add or remove <p> tags
+               as needed. Aim for 2–4 paragraphs. -->
+          <p>
+            [Start your artist statement here. Introduce who you are as an artist and what drives your work. What drew you to the topic or medium you explored in this project?]
+          </p>
+          <p>
+            [Describe your creative process. How did you develop your ideas? What choices did you make and why? What challenges did you face and how did you work through them?]
+          </p>
+          <p>
+            [Reflect on what this project means to you and what you hope your audience takes away from it.]
+          </p>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 3: AUDIO TRACKS
+      ======================================================== -->
+      <section id="audio" aria-labelledby="audio-heading">
+        <p class="section-label">Listen</p>
+        <h2 class="section-title" id="audio-heading">Audio Works</h2>
+
+        <div class="audio-grid">
+
+          <!-- ====================================================
+               AUDIO CARD — copy and paste this entire block
+               to add more tracks. Fill in the file path, title,
+               and description for each one.
+          ==================================================== -->
+          <div class="audio-card">
+            <div>
+              <!-- STUDENT: Replace with your track title -->
+              <p class="audio-card-title">Track Title One</p>
+              <!-- STUDENT: Replace with a short description -->
+              <p class="audio-card-meta">Duration · Genre or description</p>
+            </div>
+            <div class="audio-progress-wrap">
+              <div class="audio-progress-bar"></div>
+            </div>
+            <!-- STUDENT: Replace "audio/track-01.mp3" with the
+                 path to your audio file. Keep the data-src
+                 attribute — the JS uses it to load the file. -->
+            <button class="btn-play"
+                    data-src="audio/track-01.mp3"
+                    aria-label="Play Track Title One">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+              Play
+            </button>
+          </div>
+          <!-- END AUDIO CARD -->
+
+          <!-- ====================================================
+               AUDIO CARD 2 — duplicate of above
+          ==================================================== -->
+          <div class="audio-card">
+            <div>
+              <p class="audio-card-title">Track Title Two</p>
+              <p class="audio-card-meta">Duration · Genre or description</p>
+            </div>
+            <div class="audio-progress-wrap">
+              <div class="audio-progress-bar"></div>
+            </div>
+            <button class="btn-play"
+                    data-src="audio/track-02.mp3"
+                    aria-label="Play Track Title Two">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+              Play
+            </button>
+          </div>
+          <!-- END AUDIO CARD -->
+
+          <!-- ====================================================
+               AUDIO CARD 3 — duplicate of above
+          ==================================================== -->
+          <div class="audio-card">
+            <div>
+              <p class="audio-card-title">Track Title Three</p>
+              <p class="audio-card-meta">Duration · Genre or description</p>
+            </div>
+            <div class="audio-progress-wrap">
+              <div class="audio-progress-bar"></div>
+            </div>
+            <button class="btn-play"
+                    data-src="audio/track-03.mp3"
+                    aria-label="Play Track Title Three">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+              Play
+            </button>
+          </div>
+          <!-- END AUDIO CARD -->
+
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 4: VIDEO
+      ======================================================== -->
+      <section id="video" aria-labelledby="video-heading">
+        <p class="section-label">Watch</p>
+        <h2 class="section-title" id="video-heading">Video</h2>
+
+        <div class="video-wrapper">
+
+          <!-- ==================================================
+               OPTION A — YouTube (unlisted or public video)
+               Replace YOUR_VIDEO_ID with the 11-character ID
+               from the end of the YouTube URL.
+               Example URL: https://youtu.be/dQw4w9WgXcQ
+               → Replace YOUR_VIDEO_ID with: dQw4w9WgXcQ
+
+               Uncomment the line below and delete Option B.
+          ================================================== -->
+          <!--
+          <iframe
+            src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+            title="Senior Project Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+          -->
+
+          <!-- ==================================================
+               OPTION B — Google Drive
+               1. In Drive, right-click your video → Share →
+                  "Anyone with the link."
+               2. Copy the file ID from the share URL.
+                  Share URL looks like:
+                  https://drive.google.com/file/d/FILE_ID_HERE/view
+               3. Replace YOUR_FILE_ID below with that ID.
+
+               Uncomment the line below and delete Option A.
+          ================================================== -->
+          <!--
+          <iframe
+            src="https://drive.google.com/file/d/YOUR_FILE_ID/preview"
+            title="Senior Project Video"
+            allow="autoplay"
+            allowfullscreen>
+          </iframe>
+          -->
+
+          <!-- ==================================================
+               PLACEHOLDER — remove this entire block once you
+               have added one of the iframes above.
+          ================================================== -->
+          <div class="video-placeholder">
+            <div class="video-placeholder-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="5,3 19,12 5,21"/>
+              </svg>
+            </div>
+            <p>Replace this block with your YouTube or Google Drive embed — see the HTML comments above.</p>
+          </div>
+          <!-- END PLACEHOLDER -->
+
+        </div>
+
+        <!-- STUDENT: Replace with a caption for your video -->
+        <p class="video-caption">[Video title or short description]</p>
+      </section>
+
+      <!-- ========================================================
+           SECTION 5: PHOTOS / GALLERY
+      ======================================================== -->
+      <section id="photos" aria-labelledby="photos-heading">
+        <p class="section-label">Visual Record</p>
+        <h2 class="section-title" id="photos-heading">Photos</h2>
+
+        <div class="photo-grid">
+
+          <!-- ==================================================
+               PHOTO ITEM — copy and paste this block to add more
+               photos. Change the src and alt for each image.
+               To use a photo:
+               • Put your image file in an "images/" folder
+                 next to this HTML file.
+               • Replace "images/photo-01.jpg" with your filename.
+               • Replace the alt text with a description.
+               • Replace the caption text.
+
+               Remove the <div class="photo-placeholder"> block
+               and un-comment the <img> tag when you have a real
+               image ready.
+          ================================================== -->
+
+          <!-- Photo 1 (featured — spans 2 columns) -->
+          <div class="photo-item">
+            <!-- <img src="images/photo-01.jpg" alt="Description of photo 1" /> -->
+            <div class="photo-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21,15 16,10 5,21"/>
+              </svg>
+              <span>Photo 1 (featured)</span>
+            </div>
+            <div class="photo-caption">[Caption for photo 1]</div>
+          </div>
+
+          <!-- Photo 2 -->
+          <div class="photo-item">
+            <!-- <img src="images/photo-02.jpg" alt="Description of photo 2" /> -->
+            <div class="photo-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21,15 16,10 5,21"/>
+              </svg>
+              <span>Photo 2</span>
+            </div>
+            <div class="photo-caption">[Caption for photo 2]</div>
+          </div>
+
+          <!-- Photo 3 -->
+          <div class="photo-item">
+            <!-- <img src="images/photo-03.jpg" alt="Description of photo 3" /> -->
+            <div class="photo-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21,15 16,10 5,21"/>
+              </svg>
+              <span>Photo 3</span>
+            </div>
+            <div class="photo-caption">[Caption for photo 3]</div>
+          </div>
+
+          <!-- Photo 4 -->
+          <div class="photo-item">
+            <!-- <img src="images/photo-04.jpg" alt="Description of photo 4" /> -->
+            <div class="photo-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21,15 16,10 5,21"/>
+              </svg>
+              <span>Photo 4</span>
+            </div>
+            <div class="photo-caption">[Caption for photo 4]</div>
+          </div>
+
+          <!-- Photo 5 -->
+          <div class="photo-item">
+            <!-- <img src="images/photo-05.jpg" alt="Description of photo 5" /> -->
+            <div class="photo-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21,15 16,10 5,21"/>
+              </svg>
+              <span>Photo 5</span>
+            </div>
+            <div class="photo-caption">[Caption for photo 5]</div>
+          </div>
+
+          <!-- Photo 6 -->
+          <div class="photo-item">
+            <!-- <img src="images/photo-06.jpg" alt="Description of photo 6" /> -->
+            <div class="photo-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21,15 16,10 5,21"/>
+              </svg>
+              <span>Photo 6</span>
+            </div>
+            <div class="photo-caption">[Caption for photo 6]</div>
+          </div>
+
+        </div>
+      </section>
+
+    </div><!-- /container -->
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <!-- STUDENT: Replace the placeholders below -->
+    <p>[First Name] [L]. &nbsp;·&nbsp; Senior Project &nbsp;·&nbsp; [School Name] &nbsp;·&nbsp; [Year]</p>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT — Audio player logic
+       You do not need to edit this section.
+  ============================================================ -->
+  <script>
+    (function () {
+      let currentAudio = null;
+      let currentBtn   = null;
+      let currentBar   = null;
+
+      const PLAY_ICON  = '<polygon points="5,3 19,12 5,21"/>';
+      const PAUSE_ICON = '<rect x="6" y="3" width="4" height="18"/><rect x="14" y="3" width="4" height="18"/>';
+
+      function setIcon(btn, icon) {
+        const svg = btn.querySelector('svg');
+        if (svg) svg.innerHTML = icon;
+      }
+
+      function resetPlayer(btn, bar) {
+        btn.classList.remove('playing');
+        btn.textContent = '';
+        btn.insertAdjacentHTML('afterbegin',
+          `<svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;flex-shrink:0">${PLAY_ICON}</svg>`);
+        btn.append(' Play');
+        if (bar) { bar.style.width = '0%'; }
+      }
+
+      document.querySelectorAll('.btn-play').forEach(function (btn) {
+        const card = btn.closest('.audio-card');
+        const bar  = card ? card.querySelector('.audio-progress-bar') : null;
+
+        btn.addEventListener('click', function () {
+          const src = btn.dataset.src;
+
+          // If this button is already playing — pause it
+          if (currentAudio && currentBtn === btn) {
+            currentAudio.pause();
+            resetPlayer(btn, bar);
+            currentAudio = null;
+            currentBtn   = null;
+            currentBar   = null;
+            return;
+          }
+
+          // Stop any other track that's playing
+          if (currentAudio) {
+            currentAudio.pause();
+            resetPlayer(currentBtn, currentBar);
+          }
+
+          // Start new track
+          const audio = new Audio(src);
+          currentAudio = audio;
+          currentBtn   = btn;
+          currentBar   = bar;
+
+          btn.classList.add('playing');
+          btn.textContent = '';
+          btn.insertAdjacentHTML('afterbegin',
+            `<svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;flex-shrink:0">${PAUSE_ICON}</svg>`);
+          btn.append(' Pause');
+
+          // Update progress bar
+          audio.addEventListener('timeupdate', function () {
+            if (audio.duration && bar) {
+              bar.style.width = ((audio.currentTime / audio.duration) * 100) + '%';
+            }
+          });
+
+          // When track ends, reset
+          audio.addEventListener('ended', function () {
+            resetPlayer(btn, bar);
+            currentAudio = null;
+            currentBtn   = null;
+            currentBar   = null;
+          });
+
+          audio.play().catch(function (err) {
+            console.warn('Audio playback error:', err);
+            resetPlayer(btn, bar);
+            currentAudio = null;
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
