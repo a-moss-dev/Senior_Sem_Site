@@ -95,9 +95,33 @@
       <!-- ========================================================
            SECTION 3: AUDIO TRACKS
       ======================================================== -->
-      <section id="add-audio" aria-labelledby="audio-heading">
+      <section id="audio" aria-labelledby="audio-heading">
         <p class="section-label">Listen</p>
-        <h2 class="section-title" id="audio-heading">Audio Works</h2>
+        
+        <h2 class="section-title" id="prod-heading">Final Product</h2>
+          <div class="final-prod">
+            <div class="final-card">
+              <!-- STUDENT: Replace with your track title -->
+              <p class="audio-card-title">Snap Out of Your Daydreaming</p>
+              <!-- STUDENT: Replace with a short description -->
+              <p class="audio-card-meta">2:51 · Trap/Hip-Hop</p>
+            </div>
+            <div class="audio-progress-wrap">
+              <div class="audio-progress-bar"></div>
+            </div>
+            <!-- STUDENT: Replace "audio/track-01.mp3" with the
+                 path to your audio file. Keep the data-src
+                 attribute — the JS uses it to load the file. -->
+            <button class="btn-play"
+                    data-src="audio/track-01.mp3"
+                    aria-label="Play Track Title One">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+              Play
+            </button>
+          </div>
+      
+        
+        <h2 class="section-title" id="audio-heading">Other Audio Works</h2>
 
         <div class="audio-grid">
 
@@ -107,7 +131,6 @@
                and description for each one.
           ==================================================== -->
           <div class="audio-card">
-            <div>
               <!-- STUDENT: Replace with your track title -->
               <p class="audio-card-title">Track Title One</p>
               <!-- STUDENT: Replace with a short description -->
@@ -168,9 +191,9 @@
           </div>
           <!-- END AUDIO CARD -->
 
-        </div>
-      </section>
-
+          
+        </section>
+    </div>
       <!-- ========================================================
            SECTION 4: VIDEO
       ======================================================== -->
