@@ -16,14 +16,11 @@
   <link rel="stylesheet" href="styles.css">
 
 </head>
-
-<!-- ============================================================
-     MAIN CONTENT
-============================================================ -->
 <body>
+
   <!-- ============================================================
-     HEADER
-============================================================ -->
+       HEADER
+  ============================================================ -->
   <header>
     <div class="container">
       <p class="header-eyebrow">Senior Project Portfolio</p>
@@ -49,6 +46,10 @@
     </ul>
   </nav>
 
+  <!-- ============================================================
+       MAIN CONTENT
+  ============================================================ -->
+  <main>
     <div class="container">
 
       <!-- ========================================================
@@ -70,8 +71,9 @@
       <!-- ========================================================
            SECTION 2: ARTIST STATEMENT
       ======================================================== -->
-      <section id="artist-statement" aria-labelledby="as-heading">
+      <section id="artist-stuff" aria-labelledby="as-heading">
         <p class="section-label">In My Own Words</p>
+        <div id="artist-statement" aria-labelledby="as-heading">
           <h2 class="section-title" id="as-heading">Artist Statement</h2>
           <div class="card">
             <!-- STUDENT: Replace the paragraphs below with your
@@ -87,40 +89,17 @@
               By deeply analyzing my creations for sonic balance and additional aspect opportunities, and comparing these to other’s creations, my music has improved significantly. I hope my improvement from earlier tracks to this one is noticeable and encourages listeners to explore my music further, and this demonstrates that music can be very beneficial to human life and productivity.
             </p>
           </div>
+        </div>
       </section>
 
       <!-- ========================================================
            SECTION 3: AUDIO TRACKS
       ======================================================== -->
-      <section id="audio" aria-labelledby="audio-heading">
+      <section id="add-audio" aria-labelledby="audio-heading">
         <p class="section-label">Listen</p>
-        
-        <h2 class="section-title" id="audio-heading">Final Product</h2>
-          <div class="audio-card final-prod">
-            <p class="audio-card-title">Snap Out of Your Daydreaming</p>
-            <p class="audio-card-meta">2:51 · Trap/Hip-Hop</p>
+        <h2 class="section-title" id="audio-heading">Audio Works</h2>
 
-            <div class="audio-progress-wrap">
-              <div class="audio-progress-bar"></div>
-            </div>
-
-            <button 
-              type="button"
-              class="btn-play"
-              data-src="audio/track-01.mp3"
-              aria-label="Play Snap Out of Your Daydreaming">
-
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <polygon points="5,3 19,12 5,21"/>
-              </svg>
-              Play
-            </button>
-          </div>
-      
-        
-        <h2 class="section-title" id="other-audio-heading">Other Audio Works</h2>
-
-        <section class="audio-grid">
+        <div class="audio-grid">
 
           <!-- ====================================================
                AUDIO CARD — copy and paste this entire block
@@ -128,22 +107,22 @@
                and description for each one.
           ==================================================== -->
           <div class="audio-card">
-            <p class="audio-card-title">Track Title One</p>
-            <p class="audio-card-meta">Duration · Genre or description</p>
-
+            <div>
+              <!-- STUDENT: Replace with your track title -->
+              <p class="audio-card-title">Track Title One</p>
+              <!-- STUDENT: Replace with a short description -->
+              <p class="audio-card-meta">Duration · Genre or description</p>
+            </div>
             <div class="audio-progress-wrap">
               <div class="audio-progress-bar"></div>
             </div>
-
-            <button 
-              type="button"
-              class="btn-play"
-              data-src="audio/track-01.mp3"
-              aria-label="Play Track Title One">
-
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <polygon points="5,3 19,12 5,21"/>
-              </svg>
+            <!-- STUDENT: Replace "audio/track-01.mp3" with the
+                 path to your audio file. Keep the data-src
+                 attribute — the JS uses it to load the file. -->
+            <button class="btn-play"
+                    data-src="audio/track-01.mp3"
+                    aria-label="Play Track Title One">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
               Play
             </button>
           </div>
@@ -153,22 +132,17 @@
                AUDIO CARD 2 — duplicate of above
           ==================================================== -->
           <div class="audio-card">
-            <p class="audio-card-title">Track Title One</p>
-            <p class="audio-card-meta">Duration · Genre or description</p>
-
+            <div>
+              <p class="audio-card-title">Track Title Two</p>
+              <p class="audio-card-meta">Duration · Genre or description</p>
+            </div>
             <div class="audio-progress-wrap">
               <div class="audio-progress-bar"></div>
             </div>
-
-            <button 
-              type="button"
-              class="btn-play"
-              data-src="audio/track-01.mp3"
-              aria-label="Play Track Title One">
-
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <polygon points="5,3 19,12 5,21"/>
-              </svg>
+            <button class="btn-play"
+                    data-src="audio/track-02.mp3"
+                    aria-label="Play Track Title Two">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
               Play
             </button>
           </div>
@@ -178,29 +152,25 @@
                AUDIO CARD 3 — duplicate of above
           ==================================================== -->
           <div class="audio-card">
-            <p class="audio-card-title">Track Title One</p>
-            <p class="audio-card-meta">Duration · Genre or description</p>
-
+            <div>
+              <p class="audio-card-title">Track Title Three</p>
+              <p class="audio-card-meta">Duration · Genre or description</p>
+            </div>
             <div class="audio-progress-wrap">
               <div class="audio-progress-bar"></div>
             </div>
-
-            <button 
-              type="button"
-              class="btn-play"
-              data-src="audio/track-01.mp3"
-              aria-label="Play Track Title One">
-
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <polygon points="5,3 19,12 5,21"/>
-              </svg>
+            <button class="btn-play"
+                    data-src="audio/track-03.mp3"
+                    aria-label="Play Track Title Three">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
               Play
             </button>
           </div>
           <!-- END AUDIO CARD -->
 
-          
-        </section>
+        </div>
+      </section>
+
       <!-- ========================================================
            SECTION 4: VIDEO
       ======================================================== -->
@@ -377,13 +347,23 @@
           </div>
 
         </div>
-  </section>
+      </section>
+    </div>
+  </main>
   
   <footer>
     <!-- STUDENT: Replace the placeholders below -->
     <p>Aron Moss &nbsp;·&nbsp; Senior Project &nbsp;·&nbsp; Watkinson &nbsp;·&nbsp; 2026</p>
   </footer>
   
-  </div>
 </body>
+  <!-- ============================================================
+       FOOTER
+   <script src="script.js" defer></script> ============================================================ -->
+  
+
+  <!-- ============================================================
+       JAVASCRIPT — Audio player logic
+       You do not need to edit this section.
+  ============================================================ -->
 </html>
