@@ -1,4 +1,4 @@
-    /* ============================================================
+/* ============================================================
        COLOR PALETTE — change these variables to restyle everything
     ============================================================ */
     :root {
@@ -248,38 +248,24 @@
     /* ============================================================
        SECTION: ARTIST STATEMENT
     ============================================================ */
-    .section-label {
-      color: var(--color-text-primary);
-      font-size: 1.05rem;
-      line-height: 1.8;
-      margin-bottom: 1rem;
-      text-indent: 0;
-}
     #artist-statement p {
       color: var(--color-text-primary);
       font-size: 1.05rem;
       line-height: 1.8;
       margin-bottom: 1rem;
-      text-indent: 50px;
-}
 
       /* -------------------------------------------------------
          STUDENT: Replace the placeholder <p> tags below
          with your actual artist statement paragraphs.
          You can add or remove <p> tags as needed.
       ------------------------------------------------------- */
+    }
+
+    #artist-statement p:last-child { margin-bottom: 0; }
 
     /* ============================================================
        SECTION: AUDIO TRACKS
     ============================================================ */
-
-
-    .final-prod {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-    }
-
     .audio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -429,11 +415,6 @@
       gap: 1rem;
     }
 
-    /* Make first photo span two columns for a featured look */
-    .photo-item:first-child {
-      grid-column: span 2;
-    }
-
     .photo-item {
       border-radius: 0.75rem;
       overflow: hidden;
@@ -487,6 +468,134 @@
 
     .photo-item:hover .photo-caption { transform: translateY(0); }
 
+    /* Photo items are clickable */
+    .photo-item { cursor: pointer; }
+
+    /* ============================================================
+       PHOTO MODAL
+    ============================================================ */
+    .photo-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(5, 5, 15, 0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .photo-modal-overlay.open { display: flex; }
+
+    .photo-modal-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 0.75rem;
+      object-fit: contain;
+      border: 1px solid var(--color-border);
+      display: block;
+    }
+
+    .photo-modal-caption {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 10, 20, 0.85);
+      color: var(--color-text-primary);
+      font-size: 0.85rem;
+      padding: 0.5rem 1.25rem;
+      border-radius: 2rem;
+      border: 1px solid var(--color-border);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .photo-modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: transparent;
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .photo-modal-close:hover {
+      color: var(--color-text-primary);
+      border-color: var(--color-accent-2);
+    }
+
+    /* ============================================================
+       FEATURED AUDIO CARD (The Product)
+    ============================================================ */
+    .audio-featured-wrap {
+      margin-bottom: 2.5rem;
+    }
+
+    .audio-featured-label {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-accent-3);
+      margin-bottom: 0.75rem;
+    }
+
+    .audio-card-featured {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-accent-1);
+      border-radius: 1rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .audio-card-featured .audio-card-title {
+      font-size: 1.25rem;
+      letter-spacing: 0.04em;
+      color: var(--color-accent-2);
+    }
+
+    .audio-card-featured .audio-card-meta {
+      font-size: 0.85rem;
+    }
+
+    .audio-card-featured .btn-play {
+      border-color: var(--color-accent-3);
+      color: var(--color-accent-3);
+      font-size: 0.7rem;
+      padding: 0.65rem 1.4rem;
+      align-self: flex-start;
+    }
+
+    .audio-card-featured .btn-play:hover,
+    .audio-card-featured .btn-play.playing {
+      background: var(--color-accent-3);
+      color: #fff;
+    }
+
+    .audio-card-featured .audio-progress-bar {
+      background: linear-gradient(90deg, var(--color-accent-3), var(--color-accent-1));
+    }
+
+    .audio-other-label {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 0.75rem;
+    }
+
     /* ============================================================
        FOOTER
     ============================================================ */
@@ -506,10 +615,8 @@
     ============================================================ */
     @media (max-width: 640px) {
       .photo-grid { grid-template-columns: 1fr 1fr; }
-      .photo-item:first-child { grid-column: span 2; }
     }
 
     @media (max-width: 420px) {
       .photo-grid { grid-template-columns: 1fr; }
-      .photo-item:first-child { grid-column: span 1; }
     }
