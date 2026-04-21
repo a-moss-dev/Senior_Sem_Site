@@ -572,12 +572,12 @@
 
     .audio-card-featured .btn-play:hover,
     .audio-card-featured .btn-play.playing {
-      background: var(--color-accent-3);
+      background: var(--color-accent-1);
       color: #fff;
     }
 
     .audio-card-featured .audio-progress-bar {
-      background: linear-gradient(90deg, var(--color-accent-3), var(--color-accent-1));
+      background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
     }
 
     .audio-other-label {
